@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini E-Commerce | Mekonnen Holechissa</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+  <header class="bg-white shadow p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-indigo-600">Mini E-Commerce</h1>
+    <div class="text-gray-700 font-medium">
+      🛒 Cart: <span id="cart-count">0</span> items
+    </div>
+  </header>
+
+  <main class="container mx-auto p-6">
+    <h2 class="text-3xl font-semibold mb-6 text-center">Products</h2>
+    <div id="product-list" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+  </main>
+
+  <footer class="bg-indigo-600 text-white text-center p-4 mt-8">
+    <p>© 2025 Mekonnen Holechissa | Demo E-Commerce Project</p>
+  </footer>
+
+  <script>
+    const products = [
+      { id: 1, name: "Wireless Headphones", price: 59.99 },
+      { id: 2, name: "Smart Watch", price: 129.99 },
+      { id: 3, name: "Bluetooth Speaker", price: 39.99 },
+      { id: 4, name: "Laptop Stand", price: 24.99 },
+      { id: 5, name: "USB-C Cable", price: 9.99 },
+    ];
+
+    const productList = document.getElementById("product-list");
+    const cartCount = document.getElementById("cart-count");
+    let cartTotal = 0;
+
+    function displayProducts() {
+      products.forEach(product => {
+        const card = document.createElement("div");
+        card.className = "bg-white p-6 rounded-lg shadow hover:shadow-lg transition";
+        card.innerHTML = `
+          <h3 class="text-xl font-semibold mb-2">${product.name}</h3>
+          <p class="text-gray-600 mb-4">$${product.price.toFixed(2)}</p>
+          <button class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"
+                  onclick="addToCart(${product.id})">
+            Add to Cart
+          </button>
+        `;
+        productList.appendChild(card);
+      });
+    }
+
+    function addToCart(id) {
+      cartTotal++;
+      cartCount.textContent = cartTotal;
+    }
+
+    displayProducts();
+  </script>
+</body>
+</html>
